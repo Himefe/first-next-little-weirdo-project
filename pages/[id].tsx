@@ -50,6 +50,8 @@ const User = ({ dadosFetch }: Props) => {
     },
   ];
 
+  console.log(typeof dadosFetch["company"]);
+
   if (!dadosFetch) return;
 
   return (
@@ -57,44 +59,18 @@ const User = ({ dadosFetch }: Props) => {
       <b className={styles.info_user}>Informações do Usuário:</b>
       <div className={styles.content_user}>
         <ul>
-          {/* {objLiteralArray.map((item: LiteralType, index: number) => (
+          {objLiteralArray.map((item: LiteralType, index: number) => (
             <li key={index}>
               <div>
                 <b>{item.label}:</b>
-                <p>{dadosFetch[item.key]}</p>
+                <p>
+                  {item.key !== "company"
+                    ? (dadosFetch[item.key as keyof DataType] as string)
+                    : dadosFetch[item.key].name}
+                </p>
               </div>
             </li>
-          ))} */}
-          <li>
-            <span>
-              <b>Usuário:</b> {user?.username}
-            </span>
-          </li>
-          <li>
-            <span>
-              <b>Nome:</b> {user?.name}
-            </span>
-          </li>
-          <li>
-            <span>
-              <b>Email:</b> {user?.email}
-            </span>
-          </li>
-          <li>
-            <span>
-              <b>Telefone:</b> {user?.phone}
-            </span>
-          </li>
-          <li>
-            <span>
-              <b>Site:</b> {user?.website}
-            </span>
-          </li>
-          <li>
-            <span>
-              <b>Empresa:</b> {user?.company?.name}
-            </span>
-          </li>
+          ))}
         </ul>
       </div>
     </main>
